@@ -3,11 +3,11 @@ namespace CiaAerea.Models
 {
     public class Passagem : Voo
     {
-        public double valorPassagem { get; set; }
+        public double ValorPassagem { get; set; }
 
-        public Passagem(int numeroVoo, string Origem, string Destino, DateTime horarioPartida, int numeroTotalAssentos) : base(numeroVoo, Origem, Destino, horarioPartida, numeroTotalAssentos)
+        public Passagem(int numeroVoo, string origem, string destino, DateTime horarioPartida, int numeroTotalAssentos) : base(numeroVoo, origem, destino, horarioPartida, numeroTotalAssentos)
         {
-            this.valorPassagem = valorPassagem;
+            this.ValorPassagem = valorPassagem;
         }        
     }
 }
