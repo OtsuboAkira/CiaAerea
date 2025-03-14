@@ -20,7 +20,7 @@ namespace CiaAerea.Controllers
         {
             var passagens = _context.Passagens.ToList();
             if (passagens == null)
-                BadRequest("Não há passagens para essa rota!");
+                return BadRequest("Não há passagens para essa rota!");
 
             return Ok(passagens);
         }
@@ -30,7 +30,7 @@ namespace CiaAerea.Controllers
         {
             var passagem = _context.Passagens.FirstOrDefault(x => x.Reserve == reserve);
             if (passagem == null)
-                BadRequest("Não existe passagem para essa reserva!");
+                return BadRequest("Não existe passagem para essa reserva!");
 
             return Ok(passagem);
         }
@@ -40,7 +40,7 @@ namespace CiaAerea.Controllers
         {
             _context.Passagens.Add(passagem);
             if (passagem == null)
-                BadRequest("Falha ao adicionar passagem! Por gentileza revisar informações inseridas");
+                return BadRequest("Falha ao adicionar passagem! Por gentileza revisar informações inseridas");
 
             _context.SaveChanges();
 
@@ -53,10 +53,10 @@ namespace CiaAerea.Controllers
         {
             var updatePassagem = _context.Passagens.FirstOrDefault(x => x.Reserve == passagem.Reserve);
             if (updatePassagem == null)
-                BadRequest("Passagem não encontrada!");
+                return BadRequest("Passagem não encontrada!");
 
             updatePassagem.ValorPassagem = passagem.ValorPassagem;
-            
+
             _context.Passagens.Update(updatePassagem);
 
             _context.SaveChanges();
@@ -69,7 +69,7 @@ namespace CiaAerea.Controllers
         {
             var deletePassagem = _context.Passagens.FirstOrDefault(x => x.Reserve == reserve);
             if (deletePassagem == null)
-                BadRequest("Passagem não encontrada!");
+                return BadRequest("Passagem não encontrada!");
 
             _context.Passagens.Remove(deletePassagem);
 

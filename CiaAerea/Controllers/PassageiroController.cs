@@ -28,7 +28,7 @@ namespace CiaAerea.Controllers
         {
             var passageiro = _context.Passageiros.FirstOrDefault(x => x.Id == id);
             if (passageiro == null)
-                BadRequest("Passageiro não encontrado!");
+                return BadRequest("Passageiro não encontrado!");
 
             return Ok(passageiro);
         }
@@ -38,7 +38,7 @@ namespace CiaAerea.Controllers
         {
             _context.Passageiros.Add(passageiro);
             if (passageiro == null)
-                BadRequest("Falha ao adicionar passageiro! Por gentileza revisar informações inseridas");
+                return BadRequest("Falha ao adicionar passageiro! Por gentileza revisar informações inseridas");
 
             _context.SaveChanges();
             
@@ -50,7 +50,7 @@ namespace CiaAerea.Controllers
         {
             var updatePassageiro = _context.Passageiros.FirstOrDefault(x => x.Id == passageiro.Id);
             if (updatePassageiro == null)
-                BadRequest("Passageiro não encontrado!");
+                return BadRequest("Passageiro não encontrado!");
 
             updatePassageiro.PrimeiroNome = passageiro.PrimeiroNome;
             updatePassageiro.UltimoSobrenome = passageiro.UltimoSobrenome;
@@ -68,7 +68,7 @@ namespace CiaAerea.Controllers
         {
             var deletePassageiro = _context.Passageiros.FirstOrDefault(x => x.Id == id);
             if (deletePassageiro == null)
-                BadRequest("Passageiro não encontrado!");
+                return BadRequest("Passageiro não encontrado!");
 
             _context.Passageiros.Remove(deletePassageiro);
 

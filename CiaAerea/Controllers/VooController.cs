@@ -19,7 +19,7 @@ namespace CiaAerea.Controllers
         {
             var voos = _context.Voos.ToList();
             if (voos == null)
-                BadRequest("Não há voos para essa rota");
+                return BadRequest("Não há voos para essa rota");
 
             return Ok(voos);
         }
@@ -29,7 +29,7 @@ namespace CiaAerea.Controllers
         {
             var voo = _context.Voos.FirstOrDefault(x => x.NumeroVoo == numeroVoo);
             if (voo == null)
-                BadRequest("Não há voo para esse número");
+                return BadRequest("Não há voo para esse número");
 
             return Ok(voo);
         }
@@ -39,7 +39,7 @@ namespace CiaAerea.Controllers
         {
             _context.Voos.Add(voo);
             if (voo == null)
-                BadRequest("Falha ao adicionar voo! Por gentileza revisar informações inseridas");
+                return BadRequest("Falha ao adicionar voo! Por gentileza revisar informações inseridas");
 
             _context.SaveChanges();
 
@@ -51,7 +51,7 @@ namespace CiaAerea.Controllers
         {
             var updateVoo = _context.Voos.FirstOrDefault(x => x.NumeroVoo == voo.NumeroVoo);
             if (updateVoo == null)
-                BadRequest("Voo não encontrado!");
+                return BadRequest("Voo não encontrado!");
 
             updateVoo.Origem = voo.Origem;
             updateVoo.Destino = voo.Destino;
@@ -70,7 +70,7 @@ namespace CiaAerea.Controllers
         {
             var deleteVoo = _context.Voos.FirstOrDefault(x => x.NumeroVoo == numeroVoo);
             if (deleteVoo == null)
-                BadRequest("Voo não encontrado!");
+                return BadRequest("Voo não encontrado!");
 
             _context.Voos.Remove(deleteVoo);
 
