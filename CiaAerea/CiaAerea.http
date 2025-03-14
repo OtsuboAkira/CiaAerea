@@ -1,0 +1,6 @@
+@CiaAerea_HostAddress = http://localhost:5058
+
+GET {{CiaAerea_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
